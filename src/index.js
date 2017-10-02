@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
           })
       }
     })
-
 });
 
 function pageLooper(json){
@@ -37,19 +36,38 @@ function pageLooper(json){
   allIDs = allIDs.concat(resultIDs)
 }
 
-function renderTrailer(){
-  let randomIndex = Math.floor(Math.random() * allIDs.length)
-  
-  debugger
+function cleanOutNoVideoTrailers(){
+  for (let i = 0; i < allIDs.length; i++){
+    let videoId = allIDs[i]
+    fetch(`https://api.themoviedb.org/3/movie/${videoId}?api_key=${apiKey}&append_to_response=videos`)
+      .then(res => res.json())
+      .then(res => {
+        if (res.videos.results.length === 0) {
+          allIDs.splice(i, 1)
+        }
+      })
+  }
 }
 
-
-// function combineAllIDs(){
-//   let newArray = []
-//
-//   for (let i = 0; i < allIDs.length; i++){
-//     newArray = newArray.concat(allIDs[i]);
-//   }
-//
-//   allIDs = newArray
-// }
+// function renderTrailer(){
+//   let randomIndex = Math.floor(Math.random() * allIDs.length)
+//   let randomID = allIDs[randomIndex]
+//   fetch(`https://api.themoviedb.org/3/movie/${allIDs[randomIndex]}?api_key=${apiKey}&append_to_response=videos`)
+//     .then(res => res.json())
+//     .then(res => {
+//       if (res.videos.results.length !== 0) {
+//         allIDs.splice(randomIndex)
+//         let notZero = true
+//         while (notZero) {
+//           randomIndex = Math.floor(Math.random() * allIDs.length)
+//           randomID = allIDs[randomIndex]
+//           fetch(`https://api.themoviedb.org/3/movie/${allIDs[randomIndex]}?api_key=${apiKey}&append_to_response=videos`)
+//             .then(res => res.json())
+//             .then(res => {debugger})
+//           if (res.videos.results.length !== 0){
+//             notZero = false
+//           }
+//         }
+//       } else {debugger}
+//     }
+//   })
