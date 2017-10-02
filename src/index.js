@@ -25,8 +25,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     })
 
-
-
 });
 
 function pageLooper(json){
@@ -36,15 +34,22 @@ function pageLooper(json){
   for (let i = 0; i < json.results.length; i++){
     resultIDs.push(json.results[i].id)
   }
-
-  allIDs.push(resultIDs)
+  allIDs = allIDs.concat(resultIDs)
 }
 
-function combineAllIDs(){
-  let newArray = []
-
-  for (let i = 0; i < allIDs.length; i++){
-    newArray = newArray.concat(allIDs[i]);
-  }
-  return newArray
+function renderTrailer(){
+  let randomIndex = Math.floor(Math.random() * allIDs.length)
+  
+  debugger
 }
+
+
+// function combineAllIDs(){
+//   let newArray = []
+//
+//   for (let i = 0; i < allIDs.length; i++){
+//     newArray = newArray.concat(allIDs[i]);
+//   }
+//
+//   allIDs = newArray
+// }
