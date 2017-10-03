@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sample JS Project frontend</title>
+    <title>Watch or Nah</title>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
+
+  <header>
+    <h1 style="color: white">Watch or Nah?</h1>
+  </header>
+
   <body>
-    <div class="container">
-      <div id="trailer">
+    <div id="logInSignUp" style="">
+      <h3>Already a user? Sign in!</h3>
 
-      </div>
-    </div>
-
-
-    <div class="container">
-      <div id="new-note-container">
-        <form id="new-note-form">
-          <input type="text" name="note-body" id="new-note-body">
-          <input type="submit" value="Save note">
+      <div id="logInContainer">
+        <form id="log-in-form">
+          <input type="text" name="username" id="login-username" placeholder="Username"><br>
+          <input id="LogInFormSubmit" type="submit" value="Login">
         </form>
       </div>
-      <div id="notes-container">
 
+      <div id="SignUpContainer">
+        <h3>New? Sign up!</h3>
+        <form id="sign-up-form">
+          <input type="text" name="name" id="sign-up-name" placeholder="Name"><br>
+          <input type="text" name="username" id="sign-up-username" placeholder="Username"><br>
+          <input type="integer" name="age" id="sign-up-age" placeholder="Age"><br>
+          <input type="integer" name="gender" id="sign-up-gender" placeholder="Gender"><br>
+          <input id="SignUpFormSubmit" type="submit" value="Sign Up">
+        </form>
+      </div>
+
+    </div>
+
+    <div id="mainPage" style="display none">
+      <div class="container">
+        <div id="trailer">
+
+        </div>
+      </div>
+
+
+      <div class="container">
+        <div id="new-note-container">
+          <form id="new-note-form">
+            <input type="text" name="note-body" id="new-note-body">
+            <input type="submit" value="Save note">
+          </form>
+        </div>
+        <div id="notes-container">
+
+        </div>
       </div>
     </div>
 
