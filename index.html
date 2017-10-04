@@ -24,42 +24,45 @@
       <div id="SignUpContainer">
         <h3>New? Sign up!</h3>
         <form id="sign-up-form">
-          <input type="text" name="name" id="sign-up-name" placeholder="Name"><br>
-          <input type="text" name="username" id="sign-up-username" placeholder="Username"><br>
-          <input type="integer" name="age" id="sign-up-age" placeholder="Age"><br>
-          <input type="integer" name="gender" id="sign-up-gender" placeholder="Gender"><br>
+          What is your name?<br>
+          <input type="text" name="name" id="sign-up-name"><br>
+          What would you like your username to be?<br>
+          <input type="text" name="username" id="sign-up-username"><br>
+          What is your age?<br>
+          <input type="integer" name="age" id="sign-up-age"><br>
+          What is your gender?<br>
+          <select id="sign-up-gender" name="genderlist" form="genderform">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
           <input id="SignUpFormSubmit" type="submit" value="Sign Up">
         </form>
       </div>
 
     </div>
 
-    <div id="mainPage" style="display none">
+    <div id="mainPage" style="display: none;">
       <div class="container">
         <div id="trailer">
 
         </div>
+        <div id="userChoices">
+          <button id="watch">Watch</button>
+          <button id="nah">Nah</button>
+        </div>
       </div>
 
 
       <div class="container">
-        <div id="new-note-container">
-          <form id="new-note-form">
-            <input type="text" name="note-body" id="new-note-body">
-            <input type="submit" value="Save note">
-          </form>
-        </div>
-        <div id="notes-container">
-
+        <!-- render user_movies poster as link to movie website -->
         </div>
       </div>
-    </div>
 
-    <script type="text/javascript" src="src/components/note.js"></script>
-    <script type="text/javascript" src="src/adapters/notesAdapter.js"></script>
-    <script type="text/javascript" src="src/components/notes.js"></script>
+
+
     <script type="text/javascript" src="src/components/app.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
-    <script type="text/javascript" src="src/components/movie.js"></script>
+
   </body>
 </html>

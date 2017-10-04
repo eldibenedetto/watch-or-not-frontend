@@ -32,6 +32,10 @@ ul {
   color:red;
 }
 
-#trailer{
+#trailer {
+  text-align: center;
+}
+
+#userChoices {
   text-align: center;
 }
