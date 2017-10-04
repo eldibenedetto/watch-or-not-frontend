@@ -43,21 +43,34 @@
     </div>
 
     <div id="mainPage" style="display: none;">
+
       <div class="container">
-        <div id="trailer">
+        <div id="trailer" draggable="true">
+        </div>
+
+              <!--Draggable DIV:-->
+        <div id="mydiv" draggable="true">
+        <!--Include a header DIV with the same name as the draggable DIV, followed by "header":-->
+        <div id="mydivheader" draggable="true">Click here to move</div>
 
         </div>
-        <div id="userChoices">
+
+
+      <div id="userChoices">
           <button id="watch">Watch</button>
           <button id="nah">Nah</button>
         </div>
       </div>
+
+      <div id="watchRightBar" ondragenter="enteringWatchZone()"><h2 id="zoneWatch">Watch</h2></div>
+      <div id="nahLeftBar" ondragenter="enteringNahZone()"><h2 id="zoneNah">Nah</h2></div>
 
 
       <div class="container">
         <!-- render user_movies poster as link to movie website -->
         </div>
       </div>
+
 
 
 
