@@ -98,16 +98,18 @@ function enteringNahZone(){
 
 
 function showTrailer(){
-  fetch('http://localhost:3000/api/v1/movies')
+  let username = localStorage.userName
+  fetch(`http://localhost:3000/api/v1/movies?username=${username}`)
     .then(res => res.json())
     .then(res => render(res))
+    .then(res => {debugger})
+
 }
 
 
 function render(res) {
   let randomIndex = Math.floor(Math.random() * res.length)
   let randomMovie = res[randomIndex]
-    //add if statement to check if user has seen this trailer
   let youtubeKey = randomMovie.youtube_key
   let trailerUrl = `http://www.youtube.com/embed/${youtubeKey}?autoplay=1`
   document.querySelector('#mydivheader').innerHTML = `<h3><strong>${randomMovie.title}</strong></h3><iframe width="598" height="336"
@@ -118,7 +120,7 @@ function render(res) {
 
 function renderPosters(res) {
   let baseUrl = "https://image.tmdb.org/t/p/w640"
-  res.movies.forEach(movie => {
+  res.watched_movies.forEach(movie => {
   let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
   document.querySelector("#moviePosters").innerHTML += `<img src=${fullUrl}>`
   })
