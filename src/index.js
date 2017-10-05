@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     .then(res => {
       localStorage.setItem("userId", `${res.id}`)
       localStorage.setItem("userName", `${res.username}`)
+      watchedMovies = res.watched_movies 
       // baseUrl = https://image.tmdb.org/t/p/w640
       // variable = JSON.parse(res.movies[0].raw_JSON).poster_path
       // imgUrl = baseUrl + variable
@@ -115,38 +116,42 @@ function renderPosters(res) {
   let baseUrl = "https://image.tmdb.org/t/p/w640"
   res.watched_movies.forEach(movie => {
   let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
-  document.querySelector("#moviePosters").innerHTML += `<img id=${} src=${fullUrl}>`
+  document.querySelector("#moviePosters").innerHTML += `<button id=${movie.id} class="modalLaunch"><img id=${movie.id} src=${fullUrl}></button>`
+  })
+  res.watched_movies.forEach(movie => {
+    document.getElementById(`${movie.id}`).addEventListener("click", (e)=> {debugger})
   })
 }
-
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
 
 function addPoster(res){
   let baseUrl = "https://image.tmdb.org/t/p/w640"
   let fullUrl = baseUrl + JSON.parse(res.raw_JSON).poster_path
   document.querySelector("#moviePosters").innerHTML += `<img src=${fullUrl}>`
 }
+
+// Get the modal
+// var modal = document.getElementById('myModal');
+//
+// // Get the button that opens the modal
+// var btn = document.getElementById("myBtn");
+//
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+//
+// // When the user clicks on the button, open the modal
+// btn.onclick = function() {
+//     modal.style.display = "block";
+//
+// }
+//
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = "none";
+// }
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+//   }
