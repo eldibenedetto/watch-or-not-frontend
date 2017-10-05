@@ -62,9 +62,20 @@
       <div id="nahLeftBar" ondragenter="enteringNahZone()"><h2 id="zoneNah">Nah</h2></div>
 
 
-      <div id="moviePosters">
-        <!-- render user_movies poster as link to movie website -->
-        <!-- `<a href=""><img src=https://image.tmdb.org/t/p/w640/${(res.movie.poster_path)}></a>` -->
+      <!-- <div id="moviePosters">
+      </div> -->
+
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn">
+        <div id="moviePosters"></div>
+      </button>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <p id="modalMovieContent">Some text in the Modal..</p>
         </div>
       </div>
 
