@@ -1,5 +1,4 @@
 const app = new App()
-// let moviesUserWatched = []
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       return res
     })
     .then(res => renderPosters(res))
-
 
     document.querySelector("#logInSignUp").style.display = "none"
     document.querySelector("#mainPage").style.display = "unset"
@@ -63,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 })
 
-
 function enteringWatchZone(){
   fetch("http://localhost:3000/api/v1/user_movies", {
     method: "post",
@@ -76,7 +73,7 @@ function enteringWatchZone(){
       movie_id: localStorage.movieId,
       approved: 0
     })
-  })
+  }).then(res => res.json()).then(res => addPoster(res))
   showTrailer()
 }
 
@@ -96,13 +93,12 @@ function enteringNahZone(){
   showTrailer()
 }
 
-
 function showTrailer(){
-  fetch('http://localhost:3000/api/v1/movies')
+  let username = localStorage.userName
+  fetch(`http://localhost:3000/api/v1/movies?username=${username}`)
     .then(res => res.json())
     .then(res => render(res))
 }
-
 
 function render(res) {
   let randomIndex = Math.floor(Math.random() * res.length)
@@ -117,7 +113,7 @@ function render(res) {
 
 function renderPosters(res) {
   let baseUrl = "https://image.tmdb.org/t/p/w640"
-  res.movies.forEach(movie => {
+  res.watched_movies.forEach(movie => {
   let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
   document.querySelector("#moviePosters").innerHTML += `<img id=${} src=${fullUrl}>`
   })
@@ -148,4 +144,9 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+
+function addPoster(res){
+  let baseUrl = "https://image.tmdb.org/t/p/w640"
+  let fullUrl = baseUrl + JSON.parse(res.raw_JSON).poster_path
+  document.querySelector("#moviePosters").innerHTML += `<img src=${fullUrl}>`
 }

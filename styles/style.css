@@ -12,14 +12,17 @@ h1 {
   padding-top: 5px;
   padding-bottom: 10px;
   color: white;
+  font-family: 'Lobster', cursive;
 }
 
 h2 {
   padding-top: 20px;
+  font-family: 'Lobster', cursive;
 }
 
 h3 {
   padding-bottom: 25px;
+  font-family: 'Lobster', cursive;
 }
 
 .container {
@@ -133,7 +136,9 @@ ul {
 }
 
 #moviePosters img:hover {
-  width: 240px;
+  width: 230px;
+  height: 318px;
+  box-shadow: 10px 10px 5px grey;
 }
 
 /* The Modal (background) */
