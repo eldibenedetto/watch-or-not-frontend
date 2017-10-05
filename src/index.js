@@ -124,6 +124,8 @@ function renderPosters(res) {
 
       let modal = document.getElementById('myModal')
       modal.style.display = "block"
+      document.querySelector("#modalImage").innerHTML = ""
+      renderModalInfo(e.target.id)
     })
     document.getElementsByClassName(`close`)[0].addEventListener("click", (e)=> {
       let modal = document.getElementById('myModal')
@@ -139,6 +141,8 @@ function addPoster(res){
   document.getElementById(`${res.id}`).addEventListener("click", (e)=> {
     let modal = document.getElementById('myModal')
     modal.style.display = "block"
+    document.querySelector("#modalImage").innerHTML = ""
+    renderModalInfo(e.target.id)
   })
   document.getElementsByClassName(`close`)[0].addEventListener("click", (e)=> {
     let modal = document.getElementById('myModal')
@@ -146,6 +150,25 @@ function addPoster(res){
   })
 }
 
+function renderModalInfo(movid){
+  let theModalMovie
+  for (let i = 0; i < watchedMovies.length; i++){
+
+   if (`${watchedMovies[i].id}` === movid){
+      theModalMovie = watchedMovies[i]
+      let baseUrl = "https://image.tmdb.org/t/p/w640"
+      let fullUrl = baseUrl + JSON.parse(theModalMovie.raw_JSON).poster_path
+      let img = document.createElement("img")
+      img.id = "modalImage"
+      img.src = fullUrl
+      document.querySelector("#modalImage").appendChild(img)
+      document.querySelector("#modalTitle").innerHTML = `<strong>Title:</strong> ${JSON.parse(theModalMovie.raw_JSON).title}`
+      document.querySelector("#modalDate").innerHTML = `<strong>Release Date:</strong> ${JSON.parse(theModalMovie.raw_JSON).release_date}`
+      document.querySelector("#modalDescription").innerHTML = `<strong>Description:</strong> ${JSON.parse(theModalMovie.raw_JSON).overview}`
+    }
+  }
+ console.log(theModalMovie)
+}
 // Get the modal
 // var modal = document.getElementById('myModal');
 //
