@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     .then(res => {
       localStorage.setItem("userId", `${res.id}`)
       localStorage.setItem("userName", `${res.username}`)
+      watchedMovies = []
     })
 
     document.querySelector("#logInSignUp").style.display = "none"
@@ -114,11 +115,11 @@ function render(res) {
 
 function renderPosters(res) {
   let baseUrl = "https://image.tmdb.org/t/p/w640"
-  res.watched_movies.forEach(movie => {
+  watchedMovies.forEach(movie => {
   let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
   document.querySelector("#moviePosters").innerHTML += `<img id=${movie.id} src=${fullUrl}>`
   })
-  res.watched_movies.forEach(movie => {
+  watchedMovies.forEach(movie => {
     document.getElementById(`${movie.id}`).addEventListener("click", (e)=> {
 
       let modal = document.getElementById('myModal')
@@ -134,7 +135,15 @@ function renderPosters(res) {
 function addPoster(res){
   let baseUrl = "https://image.tmdb.org/t/p/w640"
   let fullUrl = baseUrl + JSON.parse(res.raw_JSON).poster_path
-  document.querySelector("#moviePosters").innerHTML += `<img src=${fullUrl}>`
+  document.querySelector("#moviePosters").innerHTML += `<img id=${res.id} src=${fullUrl}>`
+  document.getElementById(`${res.id}`).addEventListener("click", (e)=> {
+    let modal = document.getElementById('myModal')
+    modal.style.display = "block"
+  })
+  document.getElementsByClassName(`close`)[0].addEventListener("click", (e)=> {
+    let modal = document.getElementById('myModal')
+    modal.style.display = "none"
+  })
 }
 
 // Get the modal
