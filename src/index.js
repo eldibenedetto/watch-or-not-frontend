@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     .then(res => {
       localStorage.setItem("userId", `${res.id}`)
       localStorage.setItem("userName", `${res.username}`)
-      watchedMovies = res.watched_movies 
+      watchedMovies = res.watched_movies
       // baseUrl = https://image.tmdb.org/t/p/w640
       // variable = JSON.parse(res.movies[0].raw_JSON).poster_path
       // imgUrl = baseUrl + variable
@@ -116,10 +116,18 @@ function renderPosters(res) {
   let baseUrl = "https://image.tmdb.org/t/p/w640"
   res.watched_movies.forEach(movie => {
   let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
-  document.querySelector("#moviePosters").innerHTML += `<button id=${movie.id} class="modalLaunch"><img id=${movie.id} src=${fullUrl}></button>`
+  document.querySelector("#moviePosters").innerHTML += `<img id=${movie.id} src=${fullUrl}>`
   })
   res.watched_movies.forEach(movie => {
-    document.getElementById(`${movie.id}`).addEventListener("click", (e)=> {debugger})
+    document.getElementById(`${movie.id}`).addEventListener("click", (e)=> {
+
+      let modal = document.getElementById('myModal')
+      modal.style.display = "block"
+    })
+    document.getElementsByClassName(`close`)[0].addEventListener("click", (e)=> {
+      let modal = document.getElementById('myModal')
+      modal.style.display = "none"
+    })
   })
 }
 
