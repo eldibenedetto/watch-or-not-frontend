@@ -3,11 +3,14 @@
   <head>
     <title>Watch or Nah</title>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
 
   <header>
-    <h1 style="color: white">Watch or Nah?</h1>
+    <h1>Watch or Nah?</h1>
   </header>
 
   <body>
@@ -51,23 +54,17 @@
               <!--Draggable DIV:-->
         <div id="mydiv" draggable="true">
         <!--Include a header DIV with the same name as the draggable DIV, followed by "header":-->
-        <div id="mydivheader" draggable="true">Click here to move</div>
+        <div id="mydivheader" draggable="true"></div>
 
         </div>
-
-
-      <div id="userChoices">
-          <button id="watch">Watch</button>
-          <button id="nah">Nah</button>
-        </div>
-      </div>
 
       <div id="watchRightBar" ondragenter="enteringWatchZone()"><h2 id="zoneWatch">Watch</h2></div>
       <div id="nahLeftBar" ondragenter="enteringNahZone()"><h2 id="zoneNah">Nah</h2></div>
 
 
-      <div class="container">
+      <div id="moviePosters">
         <!-- render user_movies poster as link to movie website -->
+        <!-- `<a href=""><img src=https://image.tmdb.org/t/p/w640/${(res.movie.poster_path)}></a>` -->
         </div>
       </div>
 

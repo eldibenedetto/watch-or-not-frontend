@@ -1,22 +1,25 @@
 header {
    background-color: black;
    text-align: center;
+   position: fixed;
+   z-index: 12;
+   left: 0;
+   top: 0;
+   width: 100%;
 }
 
-body {
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-   font-weight: 300;
-   line-height: 1.6em;
-   font-size: 1.3em;
-   background-color: black;
+h1 {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  color: white;
 }
 
-a {
-    color:#97659;
-   }
+h2 {
+  padding-top: 20px;
+}
 
-input {
-  font-size: 1.5em;
+h3 {
+  padding-bottom: 25px;
 }
 
 .container {
@@ -29,8 +32,9 @@ ul {
   padding-left: 20px;
 }
 
-.delete-note-link {
-  color:red;
+
+#mainPage {
+  background-color: black;
 }
 
 #trailer {
@@ -42,6 +46,9 @@ ul {
 }
 
 #mydiv {
+
+    padding-top: 10px;
+    /*border-radius: 5px;*/
     position: absolute;
     z-index: 9;
     background-color: #252424;
@@ -60,36 +67,38 @@ ul {
     background-color: #252424;
     color: #fff;
     text-align: center;
+    height: 98vh;
+    padding-top: 125px;
 }
 
 #watchRightBar {
   background-image: url(https://media.giphy.com/media/pUeXcg80cO8I8/giphy.gif);
   background-size: cover;
   background-repeat: no-repeat;
-  position:fixed;
+  position: absolute;
   top:0;
   right:0;
-  width: 16%;
+  width: 33%;
   min-width: 25%;
-  max-width: 25%;
-  height: 100%;
+  max-width: 33%;
+  height: 100vh;
   border: 1px solid #aaaaaa;
-  padding: 10px;
+  padding-top: 60px;
 }
 
 #nahLeftBar {
   background-image: url(https://media.giphy.com/media/SH5dYg10Gpjvq/giphy.gif);
   background-size: cover;
   background-repeat: no-repeat;
-  position:fixed;
+  position: absolute;
   top:0;
   left:0;
-  width: 16%;
+  width: 33%;
   min-width: 25%;
-  max-width: 25%;
-  height: 100%;
+  max-width: 33%;
+  height: 100vh;
   border: 1px solid #aaaaaa;
-  padding: 10px;
+  padding-top: 60px;
 }
 
 #zoneWatch{
@@ -105,4 +114,24 @@ ul {
 #logInSignUp{
   background-color: white;
   text-align: center;
+  padding-top: 75px;
+}
+
+#moviePosters {
+  padding-top: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#moviePosters img {
+  width: 220px;
+  height: 308px;
+  margin-bottom: 30px;
+}
+
+#moviePosters img:hover {
+  width: 240px;
 }

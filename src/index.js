@@ -20,7 +20,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     .then(res => {
       localStorage.setItem("userId", `${res.id}`)
       localStorage.setItem("userName", `${res.username}`)
+      // baseUrl = https://image.tmdb.org/t/p/w640
+      // variable = JSON.parse(res.movies[0].raw_JSON).poster_path
+      // imgUrl = baseUrl + variable
+      return res
     })
+    .then(res => renderPosters(res))
 
 
     document.querySelector("#logInSignUp").style.display = "none"
@@ -58,22 +63,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 })
 
-document.querySelector('#watch').addEventListener("click", function(e){
-  e.preventDefault()
-  fetch("http://localhost:3000/api/v1/user_movies", {
-    method: "post",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      user_id: localStorage.userId,
-      movie_id: localStorage.movieId,
-      approved: 0
-    })
-  })
-  showTrailer()
-})
 
 function enteringWatchZone(){
   fetch("http://localhost:3000/api/v1/user_movies", {
@@ -107,23 +96,6 @@ function enteringNahZone(){
   showTrailer()
 }
 
-document.querySelector('#nah').addEventListener("click", function(e){
-  e.preventDefault()
-  fetch("http://localhost:3000/api/v1/user_movies", {
-    method: "post",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      user_id: localStorage.userId,
-      movie_id: localStorage.movieId,
-      approved: 1
-    })
-  })
-  showTrailer()
-})
-
 
 function showTrailer(){
   fetch('http://localhost:3000/api/v1/movies')
@@ -138,12 +110,19 @@ function render(res) {
     //add if statement to check if user has seen this trailer
   let youtubeKey = randomMovie.youtube_key
   let trailerUrl = `http://www.youtube.com/embed/${youtubeKey}?autoplay=1`
-  document.querySelector('#mydivheader').innerHTML = `<h3>${randomMovie.title}</h3><iframe width="598" height="336"
+  document.querySelector('#mydivheader').innerHTML = `<h3><strong>${randomMovie.title}</strong></h3><iframe width="598" height="336"
   src="${trailerUrl}">
   </iframe>`
   localStorage.setItem("movieId", `${randomMovie.id}`)
 }
 
+function renderPosters(res) {
+  let baseUrl = "https://image.tmdb.org/t/p/w640"
+  res.movies.forEach(movie => {
+  let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
+  document.querySelector("#moviePosters").innerHTML += `<img src=${fullUrl}>`
+  })
+}
 
 // //Make the DIV element draggagle:
 // dragElement(document.getElementById(("mydiv")));
@@ -186,3 +165,6 @@ function render(res) {
 //     document.onmousemove = null;
 //   }
 // }
+
+
+// base url for img src https://image.tmdb.org/t/p/w640/
