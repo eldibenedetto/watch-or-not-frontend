@@ -1,6 +1,6 @@
 class NotesAdapter {
   constructor() {
-    this.baseUrl = 'http://localhost:3000/api/v1/notes'
+    this.baseUrl = 'https://watchornah.herokuapp.com/api/v1/notes'
   }
 
   getNotes() {
