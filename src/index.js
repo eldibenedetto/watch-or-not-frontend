@@ -75,7 +75,7 @@ function enteringWatchZone(){
       movie_id: localStorage.movieId,
       approved: 0
     })
-  }).then(res => res.json()).then(res => addPoster(res))
+  }).then(res => res.json()).then(res => renderPosters(res))
   showTrailer()
 }
 
@@ -114,6 +114,10 @@ function render(res) {
 }
 
 function renderPosters(res) {
+  if (res.raw_JSON) {
+    watchedMovies.push(res)
+  }
+  document.querySelector("#moviePosters").innerHTML = ""
   let baseUrl = "https://image.tmdb.org/t/p/w640"
   watchedMovies.forEach(movie => {
   let fullUrl = baseUrl + JSON.parse(movie.raw_JSON).poster_path
@@ -121,7 +125,6 @@ function renderPosters(res) {
   })
   watchedMovies.forEach(movie => {
     document.getElementById(`${movie.id}`).addEventListener("click", (e)=> {
-
       let modal = document.getElementById('myModal')
       modal.style.display = "block"
       document.querySelector("#modalImage").innerHTML = ""
@@ -134,21 +137,21 @@ function renderPosters(res) {
   })
 }
 
-function addPoster(res){
-  let baseUrl = "https://image.tmdb.org/t/p/w640"
-  let fullUrl = baseUrl + JSON.parse(res.raw_JSON).poster_path
-  document.querySelector("#moviePosters").innerHTML += `<img id=${res.id} src=${fullUrl}>`
-  document.getElementById(`${res.id}`).addEventListener("click", (e)=> {
-    let modal = document.getElementById('myModal')
-    modal.style.display = "block"
-    document.querySelector("#modalImage").innerHTML = ""
-    renderModalInfo(e.target.id)
-  })
-  document.getElementsByClassName(`close`)[0].addEventListener("click", (e)=> {
-    let modal = document.getElementById('myModal')
-    modal.style.display = "none"
-  })
-}
+// function addPoster(res){
+//   let baseUrl = "https://image.tmdb.org/t/p/w640"
+//   let fullUrl = baseUrl + JSON.parse(res.raw_JSON).poster_path
+//   document.querySelector("#moviePosters").innerHTML += `<img id=${res.id} src=${fullUrl}>`
+//   document.getElementById(`${res.id}`).addEventListener("click", (e)=> {
+//     let modal = document.getElementById('myModal')
+//     modal.style.display = "block"
+//     document.querySelector("#modalImage").innerHTML = ""
+//     renderModalInfo(e.target.id)
+//   })
+//   document.getElementsByClassName(`close`)[0].addEventListener("click", (e)=> {
+//     let modal = document.getElementById('myModal')
+//     modal.style.display = "none"
+//   })
+// }
 
 function renderModalInfo(movid){
   let theModalMovie
