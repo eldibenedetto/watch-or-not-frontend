@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector("#LogInFormSubmit").addEventListener('click', function(e){
     e.preventDefault()
 
-    fetch(`http://localhost:3000/api/v1/sessions`, {
+    fetch(`https://watchornah.herokuapp.com/api/v1/sessions`, {
       method: "post",
       headers: {
         'Accept': 'application/json',
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector("#SignUpFormSubmit").addEventListener('click', function(e){
     e.preventDefault()
 
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("https://watchornah.herokuapp.com/api/v1/users", {
       method: "post",
       headers: {
         'Accept': 'application/json',
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 })
 
 function enteringWatchZone(){
-  fetch("http://localhost:3000/api/v1/user_movies", {
+  fetch("https://watchornah.herokuapp.com/api/v1/user_movies", {
     method: "post",
     headers: {
       'Accept': 'application/json',
@@ -83,7 +83,7 @@ function enteringWatchZone(){
 }
 
 function enteringNahZone(){
-  fetch("http://localhost:3000/api/v1/user_movies", {
+  fetch("https://watchornah.herokuapp.com/api/v1/user_movies", {
     method: "post",
     headers: {
       'Accept': 'application/json',
@@ -100,7 +100,7 @@ function enteringNahZone(){
 
 function showTrailer(){
   let username = localStorage.userName
-  fetch(`http://localhost:3000/api/v1/movies?username=${username}`)
+  fetch(`https://watchornah.herokuapp.com/api/v1/movies?username=${username}`)
     .then(res => res.json())
     .then(res => render(res))
 }
