@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // baseUrl = https://image.tmdb.org/t/p/w640
       // variable = JSON.parse(res.movies[0].raw_JSON).poster_path
       // imgUrl = baseUrl + variable
+      showTrailer()
       return res
     })
     .then(res => renderPosters(res))
@@ -30,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     document.querySelector("#logInSignUp").style.display = "none"
     document.querySelector("#mainPage").style.display = "unset"
     //make session users ID
-    showTrailer()
   })
 
   document.querySelector("#SignUpFormSubmit").addEventListener('click', function(e){
@@ -54,11 +54,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       localStorage.setItem("userId", `${res.id}`)
       localStorage.setItem("userName", `${res.username}`)
       watchedMovies = []
+      showTrailer()
     })
-
+    debugger
     document.querySelector("#logInSignUp").style.display = "none"
     document.querySelector("#mainPage").style.display = "unset"
-    showTrailer()
+
   })
 
 })
@@ -76,7 +77,7 @@ function enteringWatchZone(){
       approved: 0
     })
   }).then(res => res.json()).then(res => renderPosters(res))
-  showTrailer()
+  .then(showTrailer())
 }
 
 function enteringNahZone(){
@@ -92,11 +93,12 @@ function enteringNahZone(){
       approved: 1
     })
   })
-  showTrailer()
+  .then(showTrailer())
 }
 
 function showTrailer(){
   let username = localStorage.userName
+  debugger
   fetch(`http://localhost:3000/api/v1/movies?username=${username}`)
     .then(res => res.json())
     .then(res => render(res))
