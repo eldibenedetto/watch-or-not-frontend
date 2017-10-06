@@ -2,7 +2,7 @@ const app = new App()
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-  document.querySelector("#LogInFormSubmit").addEventListener('click', function(e){
+  document.querySelector("#LogInFormSubmit").addEventListener('submit', function(e){
     e.preventDefault()
 
     fetch(`https://watchornah.herokuapp.com/api/v1/sessions`, {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   })
 
-  document.querySelector("#SignUpFormSubmit").addEventListener('click', function(e){
+  document.querySelector("#SignUpFormSubmit").addEventListener('submit', function(e){
     e.preventDefault()
 
     fetch("https://watchornah.herokuapp.com/api/v1/users", {
