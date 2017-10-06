@@ -25,12 +25,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // imgUrl = baseUrl + variable
       return res
     })
-    .then(res => renderPosters(res))
+    .then(res => {
+      renderPosters(res)
 
-    document.querySelector("#logInSignUp").style.display = "none"
-    document.querySelector("#mainPage").style.display = "unset"
-    //make session users ID
-    showTrailer()
+      document.querySelector("#logInSignUp").style.display = "none"
+      document.querySelector("#mainPage").style.display = "unset"
+      //make session users ID
+      showTrailer()
+    })
+
   })
 
   document.querySelector("#SignUpFormSubmit").addEventListener('click', function(e){
